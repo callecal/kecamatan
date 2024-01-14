@@ -125,16 +125,16 @@ class PermintaanSuratController extends Controller
         $keperluanBelumMemilikiRumah = $permintaanSuratRequest->keperluan_belum_memiliki_rumah;
 
         $findSurat = Surat::where('keterangan', '=', $surat)->first();
-        $totalPermintaanSurat = PermintaanSurat::count()+1;
+        $totalPermintaanSurat = PermintaanSurat::count() + 1;
         $tanggalHariIni = Carbon::now()->format('dmY');
 
-        $kodePermintaanSurat = $findSurat->nomor_surat.''.$tanggalHariIni.''.$totalPermintaanSurat;
+        $kodePermintaanSurat = $findSurat->nomor_surat . '' . $tanggalHariIni . '' . $totalPermintaanSurat;
 
         $tanggalStatus = Carbon::now();
 
 
-        if (substr($nomorTelepon, 0, 1) == '0'){
-            $nomorTelepon = '62'.substr($nomorTelepon, 1);
+        if (substr($nomorTelepon, 0, 1) == '0') {
+            $nomorTelepon = '62' . substr($nomorTelepon, 1);
         }
 
         $permintaanSuratData = [
@@ -157,7 +157,7 @@ class PermintaanSuratController extends Controller
 
             Mail::to($email)->send(new PendudukPermintaanSuratMail($nama, $surat, $kodePermintaanSurat));
 
-            $message = 'Pengajuan surat '.$surat.' berhasil diterima. Gunakan kode ini '.$kodePermintaanSurat.' untuk mengecek status surat.';
+            $message = 'Pengajuan surat ' . $surat . ' berhasil diterima. Gunakan kode ini ' . $kodePermintaanSurat . ' untuk mengecek status surat.';
 
             // $sendMessage = Nexmo::message()->send([
             //     'to' => $nomorTelepon,
@@ -174,7 +174,7 @@ class PermintaanSuratController extends Controller
                     'lokasi_usaha' => $lokasiUsaha,
                     'keperluan_usaha' => $keperluanUsaha
                 ];
-            }else if($surat == 'Keterangan Catatan Kepolisian (SKCK)'){
+            } else if ($surat == 'Keterangan Catatan Kepolisian (SKCK)') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'rt_skck' => $rtSKCK,
@@ -183,7 +183,7 @@ class PermintaanSuratController extends Controller
                     'tertanggal_rw_skck' => $tertanggalRWSKCK,
                     'keperluan_skck' => $keperluanSKCK
                 ];
-            }else if($surat == 'Keterangan Ghoib'){
+            } else if ($surat == 'Keterangan Ghoib') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'nama_ghoib' => $namaGhoib,
@@ -192,12 +192,12 @@ class PermintaanSuratController extends Controller
                     'alamat_ghoib' => $alamatGhoib,
                     'alasan_ghoib' => $alasanGhoib,
                 ];
-            }else if($surat == 'Keterangan Bersih Diri'){
+            } else if ($surat == 'Keterangan Bersih Diri') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'keperluan_bersih_diri' => $keperluanBersihDiri
                 ];
-            }else if($surat == 'Keterangan Kehilangan'){
+            } else if ($surat == 'Keterangan Kehilangan') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'rt_kehilangan' => $rtKehilangan,
@@ -206,7 +206,7 @@ class PermintaanSuratController extends Controller
                     'tertanggal_rw_kehilangan' => $tertanggalRWKehilangan,
                     'alasan_kehilangan' => $alasanKehilangan
                 ];
-            }else if($surat == 'Keterangan Izin Rame-Rame'){
+            } else if ($surat == 'Keterangan Izin Rame-Rame') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'rt_izin_rame' => $rtIzinRame,
@@ -219,16 +219,16 @@ class PermintaanSuratController extends Controller
                     'waktu_pelaksanaan' => $waktuPelaksanaan,
                     'alamat_pelaksanaan' => $alamatPelaksanaan
                 ];
-            }else if($surat == 'Keterangan Domisili'){
+            } else if ($surat == 'Keterangan Domisili') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'keperluan_domisili' => $keperluanDomisili,
                 ];
-            }else if($surat == 'Keterangan Tanda Penduduk Sementara'){
+            } else if ($surat == 'Keterangan Tanda Penduduk Sementara') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id
                 ];
-            }else if($surat == 'Keterangan Tidak Mampu'){
+            } else if ($surat == 'Keterangan Tidak Mampu') {
                 if ($jenis == 'Pendidikan') {
                     $permintaanSuratDetailData = [
                         'permintaan_surat_id' => $createPermintaanSurat->id,
@@ -243,13 +243,13 @@ class PermintaanSuratController extends Controller
                         'diwakili_oleh' => $diwakiliOleh,
                         'keperluan_sktm' => $keperluanSKTM
                     ];
-                }else if($jenis == 'Kesehatan'){
+                } else if ($jenis == 'Kesehatan') {
                     $permintaanSuratDetailData = [
                         'permintaan_surat_id' => $createPermintaanSurat->id,
                         'keperluan_sktm' => $keperluanSKTM
                     ];
                 }
-            }else if($surat == 'Keterangan Kelahiran'){
+            } else if ($surat == 'Keterangan Kelahiran') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'nama_anak' => $namaAnak,
@@ -271,7 +271,7 @@ class PermintaanSuratController extends Controller
                     'pekerjaan_ibu' => $pekerjaanIbu,
                     'alamat_ibu' => $alamatIbu
                 ];
-            }else if($surat == 'Keterangan Kematian'){
+            } else if ($surat == 'Keterangan Kematian') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'nama_almarhum' => $namaAlmarhum,
@@ -283,7 +283,7 @@ class PermintaanSuratController extends Controller
                     'penyebab' => $penyebab,
                     'hubungan_pelapor' => $hubunganPelapor
                 ];
-            }else if($surat == 'Keterangan Janda atau Duda'){
+            } else if ($surat == 'Keterangan Janda atau Duda') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'status' => $status,
@@ -292,22 +292,22 @@ class PermintaanSuratController extends Controller
                     'tanggal_meninggal_pensiun' => $tanggalMeninggalPensiun,
                     'pensiunan' => $pensiunan
                 ];
-            }else if($surat == 'Keterangan Penghasilan'){
+            } else if ($surat == 'Keterangan Penghasilan') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'penghasilan' => $penghasilan
                 ];
-            }else if($surat == 'Keterangan Tidak Bekerja'){
+            } else if ($surat == 'Keterangan Tidak Bekerja') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'keperluan_tidak_bekerja' => $keperluanTidakBekerja
                 ];
-            }else if($surat == 'Keterangan Belum Menikah'){
+            } else if ($surat == 'Keterangan Belum Menikah') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'keperluan_belum_menikah' => $keperluanBelumMenikah
                 ];
-            }else if($surat == 'Keterangan Belum Memiliki Rumah'){
+            } else if ($surat == 'Keterangan Belum Memiliki Rumah') {
                 $permintaanSuratDetailData = [
                     'permintaan_surat_id' => $createPermintaanSurat->id,
                     'keperluan_belum_memiliki_rumah' => $keperluanBelumMemilikiRumah
@@ -327,7 +327,7 @@ class PermintaanSuratController extends Controller
             return redirect('/permintaan-surat')
                 ->with([
                     'status' => true,
-                    'notification' => 'Permintaan surat berhasil dikirim dan selanjutnya akan dikirimkan <b>kode</b> untuk pengecekan permintaan surat via sms'
+                    'notification' => 'Permintaan surat berhasil dikirim dan selanjutnya akan dikirimkan <b>kode</b> untuk pengecekan permintaan surat via email'
                 ]);
         } catch (Exception $e) {
             return redirect('/permintaan-surat')

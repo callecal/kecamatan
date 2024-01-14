@@ -58,7 +58,7 @@ class WizardController extends Controller
                 'visi' => $visi,
                 'misi' => $misi
             ];
-        }else{
+        } else {
             $profilData = [
                 'kabupaten' => $kabupaten,
                 'kecamatan' => $kecamatan,

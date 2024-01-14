@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'pengaturan-website'], function(){
+Route::group(['prefix' => 'pengaturan-website'], function () {
     Route::get('/', [
         'uses' => 'WizardController@index',
         'as' => 'pengaturan-website'
@@ -22,13 +22,13 @@ Route::group(['prefix' => 'pengaturan-website'], function(){
     ]);
 });
 
-Route::group(['middleware' => 'wizard'], function(){
+Route::group(['middleware' => 'wizard'], function () {
     Route::get('/', [
         'uses' => 'HomeController@index',
         'as' => 'home'
     ]);
 
-    Route::group(['prefix' => 'permintaan-surat'], function(){
+    Route::group(['prefix' => 'permintaan-surat'], function () {
         Route::get('/', [
             'uses' => 'PermintaanSuratController@index',
             'as' => 'permintaan-surat'
@@ -39,21 +39,21 @@ Route::group(['middleware' => 'wizard'], function(){
         ]);
     });
 
-    Route::group(['prefix' => 'peta'], function(){
+    Route::group(['prefix' => 'peta'], function () {
         Route::get('/', [
             'uses' => 'PetaController@index',
             'as' => 'peta'
         ]);
     });
 
-    Route::group(['prefix' => 'perangkat'], function(){
+    Route::group(['prefix' => 'perangkat'], function () {
         Route::get('/', [
             'uses' => 'PerangkatController@index',
             'as' => 'perangkat'
         ]);
     });
 
-    Route::group(['prefix' => 'cek-permintaan-surat'], function(){
+    Route::group(['prefix' => 'cek-permintaan-surat'], function () {
         Route::get('/', [
             'uses' => 'CekPermintaanSuratController@index',
             'as' => 'cek-permintaan-surat'
@@ -64,9 +64,9 @@ Route::group(['middleware' => 'wizard'], function(){
         ]);
     });
 
-    Route::group(['prefix' => 'api'], function(){
-        Route::group(['prefix' => 'kependudukan'], function(){
-            Route::group(['prefix' => 'penduduk'], function(){
+    Route::group(['prefix' => 'api'], function () {
+        Route::group(['prefix' => 'kependudukan'], function () {
+            Route::group(['prefix' => 'penduduk'], function () {
                 Route::get('/data-penduduk', [
                     'uses' => 'API\Kependudukan\PendudukController@dataPenduduk',
                 ]);
@@ -89,8 +89,8 @@ Route::group(['middleware' => 'wizard'], function(){
         });
     });
 
-    Route::group(['prefix' => 'dasbor'], function(){
-        Route::group(['prefix' => 'autentikasi'], function(){
+    Route::group(['prefix' => 'dasbor'], function () {
+        Route::group(['prefix' => 'autentikasi'], function () {
             Route::get('/form-login', [
                 'uses' => 'Autentikasi\AutentikasiController@loginForm',
                 'as' => 'autentikasi.loginForm'
@@ -105,21 +105,21 @@ Route::group(['middleware' => 'wizard'], function(){
             ]);
         });
 
-        Route::group(['prefix' => 'pengaturan'], function(){
+        Route::group(['prefix' => 'pengaturan'], function () {
             Route::get('/', [
                 'uses' => 'Master/PengaturanController@index',
                 'as' => 'dasbor.pengaturan'
             ]);
         });
 
-        Route::group(['middleware' => 'auth:pengguna'], function(){
+        Route::group(['middleware' => 'auth:pengguna'], function () {
             Route::get('/', [
                 'uses' => 'DasborController@index',
                 'as' => 'dasbor.index'
             ]);
-            Route::group(['middleware' => 'jenis-pengguna'], function(){
-                Route::group(['prefix' => 'profil'], function(){
-                    Route::group(['prefix' => 'pemerintahan'], function(){
+            Route::group(['middleware' => 'jenis-pengguna'], function () {
+                Route::group(['prefix' => 'profil'], function () {
+                    Route::group(['prefix' => 'pemerintahan'], function () {
                         Route::get('/', [
                             'uses' => 'Profil\PemerintahanController@index',
                             'as' => 'profil.pemerintahan.index'
@@ -129,7 +129,7 @@ Route::group(['middleware' => 'wizard'], function(){
                             'as' => 'profil.pemerintahan.update'
                         ]);
                     });
-                    Route::group(['prefix' => 'perangkat'], function(){
+                    Route::group(['prefix' => 'perangkat'], function () {
                         Route::get('/', [
                             'uses' => 'Profil\PerangkatController@index',
                             'as' => 'profil.perangkat.index'
@@ -160,8 +160,8 @@ Route::group(['middleware' => 'wizard'], function(){
                         ]);
                     });
                 });
-                Route::group(['prefix' => 'master'], function(){
-                    Route::group(['prefix' => 'agama'], function(){
+                Route::group(['prefix' => 'master'], function () {
+                    Route::group(['prefix' => 'agama'], function () {
                         Route::get('/', [
                             'uses' => 'Master\AgamaController@index',
                             'as' => 'master.agama.index'
@@ -191,7 +191,7 @@ Route::group(['middleware' => 'wizard'], function(){
                             'as' => 'master.agama.destroy'
                         ]);
                     });
-                    Route::group(['prefix' => 'pendidikan'], function(){
+                    Route::group(['prefix' => 'pendidikan'], function () {
                         Route::get('/', [
                             'uses' => 'Master\PendidikanController@index',
                             'as' => 'master.pendidikan.index'
@@ -221,7 +221,7 @@ Route::group(['middleware' => 'wizard'], function(){
                             'as' => 'master.pendidikan.destroy'
                         ]);
                     });
-                    Route::group(['prefix' => 'jenis-kelamin'], function(){
+                    Route::group(['prefix' => 'jenis-kelamin'], function () {
                         Route::get('/', [
                             'uses' => 'Master\JenisKelaminController@index',
                             'as' => 'master.jenis_kelamin.index'
@@ -251,7 +251,7 @@ Route::group(['middleware' => 'wizard'], function(){
                             'as' => 'master.jenis_kelamin.destroy'
                         ]);
                     });
-                    Route::group(['prefix' => 'status-perkawinan'], function(){
+                    Route::group(['prefix' => 'status-perkawinan'], function () {
                         Route::get('/', [
                             'uses' => 'Master\StatusPerkawinanController@index',
                             'as' => 'master.status_perkawinan.index'
@@ -281,7 +281,7 @@ Route::group(['middleware' => 'wizard'], function(){
                             'as' => 'master.status_perkawinan.destroy'
                         ]);
                     });
-                    Route::group(['prefix' => 'pengguna'], function(){
+                    Route::group(['prefix' => 'pengguna'], function () {
                         Route::get('/', [
                             'uses' => 'Master\PenggunaController@index',
                             'as' => 'master.pengguna.index'
@@ -313,9 +313,9 @@ Route::group(['middleware' => 'wizard'], function(){
                     });
                 });
             });
-            Route::group(['prefix' => 'kependudukan'], function(){
-                Route::group(['prefix' => 'penduduk'], function(){
-                    Route::group(['prefix' => 'api'], function(){
+            Route::group(['prefix' => 'kependudukan'], function () {
+                Route::group(['prefix' => 'penduduk'], function () {
+                    Route::group(['prefix' => 'api'], function () {
                         Route::get('/data-penduduk', [
                             'uses' => 'Kependudukan\PendudukController@dataPenduduk',
                         ]);
@@ -365,8 +365,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'pelayanan'], function(){
-                Route::group(['prefix' => 'permintaan-surat'], function(){
+            Route::group(['prefix' => 'pelayanan'], function () {
+                Route::group(['prefix' => 'permintaan-surat'], function () {
                     Route::get('/', [
                         'uses' => 'Pelayanan\PermintaanSuratController@index',
                         'as' => 'pelayanan.permintaan_surat.index'
@@ -384,7 +384,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'pelayanan.permintaan_surat.update'
                     ]);
                 });
-                Route::group(['prefix' => 'pengambilan-surat'], function(){
+                Route::group(['prefix' => 'pengambilan-surat'], function () {
                     Route::get('/', [
                         'uses' => 'Pelayanan\PengambilanSuratController@index',
                         'as' => 'pelayanan.pengambilan_surat.index'
@@ -399,8 +399,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'kaur-ekbang'], function(){
-                Route::group(['prefix' => 'keterangan-usaha'], function(){
+            Route::group(['prefix' => 'kaur-ekbang'], function () {
+                Route::group(['prefix' => 'keterangan-usaha'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Ekbang\KeteranganUsahaController@index',
                         'as' => 'kaur_ekbang.keterangan_usaha.index'
@@ -431,8 +431,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'kaur-umum'], function(){
-                Route::group(['prefix' => 'skck'], function(){
+            Route::group(['prefix' => 'kaur-umum'], function () {
+                Route::group(['prefix' => 'skck'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Umum\SKCKController@index',
                         'as' => 'kaur_umum.skck.index'
@@ -462,7 +462,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_umum.skck.update'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-ghoib'], function(){
+                Route::group(['prefix' => 'keterangan-ghoib'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Umum\KeteranganGhoibController@index',
                         'as' => 'kaur_umum.keterangan_ghoib.index'
@@ -493,8 +493,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'kaur-tantrib-dan-umum'], function(){
-                Route::group(['prefix' => 'keterangan-bersih-diri'], function(){
+            Route::group(['prefix' => 'kaur-tantrib-dan-umum'], function () {
+                Route::group(['prefix' => 'keterangan-bersih-diri'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\TantribUmum\KeteranganBersihDiriController@index',
                         'as' => 'kaur_tantrib_dan_umum.keterangan_bersih_diri.index'
@@ -524,7 +524,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_tantrib_dan_umum.keterangan_bersih_diri.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-kehilangan'], function(){
+                Route::group(['prefix' => 'keterangan-kehilangan'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\TantribUmum\KeteranganKehilanganController@index',
                         'as' => 'kaur_tantrib_dan_umum.keterangan_kehilangan.index'
@@ -554,7 +554,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_tantrib_dan_umum.keterangan_kehilangan.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-izin-rame'], function(){
+                Route::group(['prefix' => 'keterangan-izin-rame'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\TantribUmum\KeteranganIzinRameController@index',
                         'as' => 'kaur_tantrib_dan_umum.keterangan_izin_rame.index'
@@ -585,8 +585,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'kaur-pemerintahan'], function(){
-                Route::group(['prefix' => 'keterangan-domisili'], function(){
+            Route::group(['prefix' => 'kaur-pemerintahan'], function () {
+                Route::group(['prefix' => 'keterangan-domisili'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Pemerintahan\KeteranganDomisiliController@index',
                         'as' => 'kaur_pemerintahan.keterangan_domisili.index'
@@ -616,7 +616,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_pemerintahan.keterangan_domisili.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-beda-identitas'], function(){
+                Route::group(['prefix' => 'keterangan-beda-identitas'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Pemerintahan\KeteranganBedaIdentitasController@index',
                         'as' => 'kaur_pemerintahan.keterangan_beda_identitas.index'
@@ -638,7 +638,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_pemerintahan.keterangan_beda_identitas.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-ktp-sementara'], function(){
+                Route::group(['prefix' => 'keterangan-ktp-sementara'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Pemerintahan\KeteranganKTPSementaraController@index',
                         'as' => 'kaur_pemerintahan.keterangan_ktp_sementara.index'
@@ -668,7 +668,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_pemerintahan.keterangan_ktp_sementara.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-kk-sementara'], function(){
+                Route::group(['prefix' => 'keterangan-kk-sementara'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Pemerintahan\KeteranganKKSementaraController@index',
                         'as' => 'kaur_pemerintahan.keterangan_kk_sementara.index'
@@ -691,8 +691,8 @@ Route::group(['middleware' => 'wizard'], function(){
                     ]);
                 });
             });
-            Route::group(['prefix' => 'kaur-kesra'], function(){
-                Route::group(['prefix' => 'sktm'], function(){
+            Route::group(['prefix' => 'kaur-kesra'], function () {
+                Route::group(['prefix' => 'sktm'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\SKTMController@index',
                         'as' => 'kaur_kesra.sktm.index'
@@ -722,7 +722,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.sktm.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-kelahiran'], function(){
+                Route::group(['prefix' => 'keterangan-kelahiran'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganKelahiranController@index',
                         'as' => 'kaur_kesra.keterangan_kelahiran.index'
@@ -752,7 +752,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_kelahiran.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-kematian'], function(){
+                Route::group(['prefix' => 'keterangan-kematian'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganKematianController@index',
                         'as' => 'kaur_kesra.keterangan_kematian.index'
@@ -782,7 +782,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_kematian.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-janda-duda'], function(){
+                Route::group(['prefix' => 'keterangan-janda-duda'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganJandaDudaController@index',
                         'as' => 'kaur_kesra.keterangan_janda_duda.index'
@@ -812,7 +812,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_janda_duda.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-penghasilan'], function(){
+                Route::group(['prefix' => 'keterangan-penghasilan'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganPenghasilanController@index',
                         'as' => 'kaur_kesra.keterangan_penghasilan.index'
@@ -842,7 +842,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_penghasilan.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-tidak-bekerja'], function(){
+                Route::group(['prefix' => 'keterangan-tidak-bekerja'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganTidakBekerjaController@index',
                         'as' => 'kaur_kesra.keterangan_tidak_bekerja.index'
@@ -872,7 +872,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_tidak_bekerja.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-belum-menikah'], function(){
+                Route::group(['prefix' => 'keterangan-belum-menikah'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganBelumMenikahController@index',
                         'as' => 'kaur_kesra.keterangan_belum_menikah.index'
@@ -902,7 +902,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_belum_menikah.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-tanggungan-keluarga'], function(){
+                Route::group(['prefix' => 'keterangan-tanggungan-keluarga'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganTanggunganKeluargaController@index',
                         'as' => 'kaur_kesra.keterangan_tanggungan_keluarga.index'
@@ -932,7 +932,7 @@ Route::group(['middleware' => 'wizard'], function(){
                         'as' => 'kaur_kesra.keterangan_tanggungan_keluarga.surat'
                     ]);
                 });
-                Route::group(['prefix' => 'keterangan-belum-memiliki-rumah'], function(){
+                Route::group(['prefix' => 'keterangan-belum-memiliki-rumah'], function () {
                     Route::get('/', [
                         'uses' => 'KAUR\Kesra\KeteranganBelumMemilikiRumahController@index',
                         'as' => 'kaur_kesra.keterangan_belum_memiliki_rumah.index'

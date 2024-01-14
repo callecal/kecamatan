@@ -3,7 +3,7 @@
     <div class="carousel-inner" role="listbox">
       <div
         class="carousel-item active"
-        style="background-image: url('/assets/frontend/img/bg@3.jpg')"
+        style="background-image: url('/assets/frontend/img/bg.jpeg')"
         alt="Photo by Robert Collins on Unsplash"
       >
         <div class="carousel-caption d-none d-md-block">
