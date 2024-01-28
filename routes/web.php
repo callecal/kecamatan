@@ -45,6 +45,12 @@ Route::group(['middleware' => 'wizard'], function () {
             'as' => 'peta'
         ]);
     });
+    Route::group(['prefix' => 'sejarah'], function () {
+        Route::get('/', [
+            'uses' => 'SejarahController@index',
+            'as' => 'sejarah'
+        ]);
+    });
 
     Route::group(['prefix' => 'perangkat'], function () {
         Route::get('/', [

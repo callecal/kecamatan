@@ -18,11 +18,8 @@
             <a class="dropdown-item" href="/peta">
               Peta
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="sejarah">
               Sejarah
-            </a>
-            <a class="dropdown-item" href="#">
-              Visi Misi
             </a>
             <a class="dropdown-item" href="/perangkat">
               Perangkat
